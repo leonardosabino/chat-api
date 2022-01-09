@@ -3,6 +3,7 @@ package com.webhook.chat.controller;
 import com.webhook.chat.model.Message;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public class MessageController {
     public static List<Message> messages = new ArrayList<>();
 
     @PostMapping
-    public Message sendMessage(@RequestBody Message message) {
+    public Message sendMessage(@RequestBody @Validated Message message) {
         message.setCreatedAt(LocalDateTime.now());
         messages.add(message);
         return message;
