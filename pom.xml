@@ -8,11 +8,11 @@
         <version>2.6.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.webhook</groupId>
+    <groupId>com.chat</groupId>
     <artifactId>chat</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>chat</name>
-    <description>A webhook chat</description>
+    <description>A message manager</description>
     <properties>
         <java.version>11</java.version>
     </properties>

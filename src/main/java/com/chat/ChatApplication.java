@@ -1,4 +1,4 @@
-package com.webhook.chat;
+package com.chat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.webhook.chat.model;
+package com.chat.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
-package com.webhook.chat.exception;
+package com.chat.exception;
 
-import com.webhook.chat.model.ApiErrorDTO;
+import com.chat.model.ApiErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
