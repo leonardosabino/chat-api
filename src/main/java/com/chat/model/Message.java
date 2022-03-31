@@ -1,17 +1,20 @@
 package com.chat.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
-@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Message {
 
     @NotNull
     private String nickName;
+
     @NotNull
     private String message;
-    private LocalDateTime createdAt;
 
 }

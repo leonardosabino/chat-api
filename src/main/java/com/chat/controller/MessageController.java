@@ -1,37 +1,29 @@
 package com.chat.controller;
 
 import com.chat.model.Message;
+import com.chat.service.MessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/message", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/v1/message", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MessageController {
 
-    public static List<Message> messages = new ArrayList<>();
+    @Autowired
+    private MessageService messageService;
 
     @PostMapping
-    public Message sendMessage(@RequestBody @Validated Message message) {
-        message.setCreatedAt(LocalDateTime.now());
-        messages.add(message);
-        return message;
+    public void saveMessage(@RequestBody @Validated Message message) {
+        messageService.saveMessage(message);
     }
 
     @GetMapping
-    public List<Message> readMessages() {
-        return messages;
-    }
-
-    @Scheduled(fixedDelay = 100)
-    public void emptyMessages() {
-        messages.removeIf(value -> ChronoUnit.MINUTES.between(value.getCreatedAt(), LocalDateTime.now()) >= 5);
+    public List<Message> getMessages(@RequestHeader String key) {
+        return messageService.getMessages(key);
     }
 
 }

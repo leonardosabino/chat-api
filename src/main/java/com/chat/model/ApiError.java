@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class ApiErrorDTO implements Serializable {
+public class ApiError implements Serializable {
 
     private static final long serialVersionUID = 5894637220972145408L;
 
@@ -15,7 +15,7 @@ public class ApiErrorDTO implements Serializable {
 
     private String message;
 
-    public ApiErrorDTO(String message, int code) {
+    public ApiError(String message, int code) {
         this.code = String.valueOf(code);
         this.message = message;
     }

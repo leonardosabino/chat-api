@@ -1,6 +1,7 @@
 package com.chat.exception;
 
-import com.chat.model.ApiErrorDTO;
+import com.chat.model.ApiError;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -11,23 +12,25 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.Arrays;
+
 @ControllerAdvice
+@Slf4j
 public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ApiErrorDTO handle(Exception ex) {
-        return new ApiErrorDTO(ex.getMessage(),
-                HttpStatus.INTERNAL_SERVER_ERROR.value());
+    public ApiError handle(Exception ex) {
+        ex.printStackTrace();
+        return new ApiError(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ApiErrorDTO handle(MethodArgumentNotValidException ex) {
-        return new ApiErrorDTO(getMethodArgumentErrors(ex.getBindingResult()),
-                HttpStatus.BAD_REQUEST.value());
+    public ApiError handle(MethodArgumentNotValidException ex) {
+        return new ApiError(getMethodArgumentErrors(ex.getBindingResult()), HttpStatus.BAD_REQUEST.value());
     }
 
     private String getMethodArgumentErrors(BindingResult bindResults) {
