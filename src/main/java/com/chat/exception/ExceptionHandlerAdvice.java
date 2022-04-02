@@ -18,10 +18,10 @@ import java.util.Arrays;
 @Slf4j
 public class ExceptionHandlerAdvice {
 
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = CryptoException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ApiError handle(Exception ex) {
+    public ApiError handle(CryptoException ex) {
         ex.printStackTrace();
         return new ApiError(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
