@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
 public class CryptoService {
 
     @Value("${chat.key}")
-    public String keyProperty;
+    private String keyProperty;
 
     private static final String CIPHER_TRANSFORMATION = "AES/ECB/PKCS5Padding";
     private static final String CIPHER_ALGORITHM = "AES";

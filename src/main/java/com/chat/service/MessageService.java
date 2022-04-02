@@ -42,9 +42,9 @@ public class MessageService {
                 .build()).collect(Collectors.toList());
     }
 
-    @Scheduled(fixedDelay = 100)
+    @Scheduled(fixedDelay = 60000)
     private void emptyMessages() {
-        messagesBytes.removeIf(value -> ChronoUnit.MINUTES.between(value.getCreatedAt(), LocalDateTime.now()) >= 5);
+        messagesBytes.removeIf(value -> ChronoUnit.MINUTES.between(value.getCreatedAt(), LocalDateTime.now()) >= 24);
     }
 
 }
